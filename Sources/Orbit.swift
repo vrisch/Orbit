@@ -26,6 +26,7 @@ public final class Disposable {
 
     private let dispose: (() -> Void)?
     private var others: [Disposable] = []
+    private weak var parent: Disposable?
 }
 
 public extension Disposable {
@@ -44,19 +45,21 @@ public extension Disposable {
         others = []
     }
 
-    public func add(_ disposable: Disposable) {
+    public func add(disposable: Disposable) {
+        guard disposable.parent == nil else { abort() }
+        disposable.parent = self
         others.append(disposable)
     }
 
-    public func add(_ disposables: [Disposable]) {
-        others += disposables
+    public func add(disposables: [Disposable]) {
+        disposables.forEach { add(disposable: $0) }
     }
     
     static public func +=(lhs: inout Disposable, rhs: Disposable) {
-        lhs.add(rhs)
+        lhs.add(disposable: rhs)
     }
     
     static public func +=(lhs: inout Disposable, rhs: [Disposable]) {
-        lhs.add(rhs)
+        lhs.add(disposables: rhs)
     }
 }
