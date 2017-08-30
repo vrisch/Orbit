@@ -11,35 +11,48 @@ import Foundation
 public final class Disposable {
 
     public init() {
-        self.dispose = nil
+        self.block = nil
+        self.object = nil
+        self.others = []
     }
     
-    public init(dispose: @escaping () -> Void) {
-        self.dispose = dispose
+    public init(block: @escaping () -> Void) {
+        self.block = block
+        self.object = nil
+        self.others = []
+    }
+    
+    public init(object: Any) {
+        self.block = nil
+        self.object = object
+        self.others = []
     }
 
     deinit {
         empty()
     }
 
-    private let dispose: (() -> Void)?
-    private var others: [Disposable] = []
+    private let block: (() -> Void)?
+    private var object: Any?
+    private var others: [Disposable]
     private weak var parent: Disposable?
 }
 
 public extension Disposable {
 
-    public var isEmpty: Bool { return dispose == nil && others.count == 0 }
+    public var isEmpty: Bool { return block == nil && others.count == 0 }
 
     public var count: Int {
         var result = 0
-        if dispose != nil { result += 1 }
+        if block != nil { result += 1 }
+        if object != nil { result += 1 }
         others.forEach { result += $0.count }
         return result
     }
 
     public func empty() {
-        dispose?()
+        block?()
+        object = nil
         others = []
     }
 
