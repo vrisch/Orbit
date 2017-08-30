@@ -45,4 +45,12 @@ public extension Disposable {
     public func add(_ disposables: [Disposable]) {
         others += disposables
     }
+    
+    static public func +=(lhs: inout Disposable, rhs: Disposable) {
+        lhs.add(rhs)
+    }
+    
+    static public func +=(lhs: inout Disposable, rhs: [Disposable]) {
+        lhs.add(rhs)
+    }
 }
