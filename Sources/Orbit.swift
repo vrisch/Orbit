@@ -30,6 +30,8 @@ public final class Disposable {
 }
 
 public extension Disposable {
+    
+    var isEmpty: Bool { return dispose == nil && others.count == 0 }
 
     public func empty() {
         dispose?()
