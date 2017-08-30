@@ -24,13 +24,23 @@ public final class Disposable {
     deinit {
         empty()
     }
-    
+
     private let dispose: (() -> Void)?
+    private var others: [Disposable] = []
 }
 
 public extension Disposable {
-    
+
     public func empty() {
         dispose?()
+        others = []
+    }
+
+    public func add(_ disposable: Disposable) {
+        others.append(disposable)
+    }
+
+    public func add(_ disposables: [Disposable]) {
+        others += disposables
     }
 }
