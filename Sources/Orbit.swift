@@ -30,9 +30,9 @@ public final class Disposable {
 
 public extension Disposable {
 
-    var isEmpty: Bool { return dispose == nil && others.count == 0 }
+    public var isEmpty: Bool { return dispose == nil && others.count == 0 }
 
-    var count: Int {
+    public var count: Int {
         var result = 0
         if dispose != nil { result += 1 }
         others.forEach { result += $0.count }
