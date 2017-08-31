@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class Disposable {
+public final class Disposables {
 
     public init() {
         self.block = nil
@@ -34,11 +34,11 @@ public final class Disposable {
 
     private var block: (() -> Void)?
     private var object: Any?
-    private var others: [Disposable]
-    private weak var parent: Disposable?
+    private var others: [Disposables]
+    private weak var parent: Disposables?
 }
 
-public extension Disposable {
+public extension Disposables {
 
     public var isEmpty: Bool { return block == nil && others.count == 0 }
 
@@ -58,21 +58,21 @@ public extension Disposable {
         others = []
     }
 
-    public func add(disposable: Disposable) {
+    public func add(disposable: Disposables) {
         guard disposable.parent == nil else { abort() }
         disposable.parent = self
         others.append(disposable)
     }
 
-    public func add(disposables: [Disposable]) {
+    public func add(disposables: [Disposables]) {
         disposables.forEach { add(disposable: $0) }
     }
     
-    static public func +=(lhs: inout Disposable, rhs: Disposable) {
+    static public func +=(lhs: inout Disposables, rhs: Disposables) {
         lhs.add(disposable: rhs)
     }
     
-    static public func +=(lhs: inout Disposable, rhs: [Disposable]) {
+    static public func +=(lhs: inout Disposables, rhs: [Disposables]) {
         lhs.add(disposables: rhs)
     }
 }
