@@ -32,7 +32,7 @@ public final class Disposable {
         empty()
     }
 
-    private let block: (() -> Void)?
+    private var block: (() -> Void)?
     private var object: Any?
     private var others: [Disposable]
     private weak var parent: Disposable?
@@ -52,7 +52,9 @@ public extension Disposable {
 
     public func empty() {
         block?()
+        block = nil
         object = nil
+        others.forEach { $0.empty() }
         others = []
     }
 
