@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3086FDA41FA50A6F0017BA53 /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086FDA31FA50A6F0017BA53 /* Orbit.swift */; };
+		30ABFB741FA512F900E518EA /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086FDA31FA50A6F0017BA53 /* Orbit.swift */; };
+		30ABFB751FA512FA00E518EA /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086FDA31FA50A6F0017BA53 /* Orbit.swift */; };
+		30ABFB761FA512FB00E518EA /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086FDA31FA50A6F0017BA53 /* Orbit.swift */; };
 		52D6D9871BEFF229002C0205 /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Orbit.framework */; };
 		8933C78E1EB5B82C000D00A4 /* OrbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* OrbitTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* OrbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* OrbitTests.swift */; };
@@ -42,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		3086FDA31FA50A6F0017BA53 /* Orbit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Orbit.swift; path = Orbit/Orbit.swift; sourceTree = "<group>"; };
+		30ABFB721FA5125F00E518EA /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		52D6D97C1BEFF229002C0205 /* Orbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Orbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* Orbit-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orbit-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9E21BEFFF6E002C0205 /* Orbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Orbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +117,7 @@
 		52D6D9721BEFF229002C0205 = {
 			isa = PBXGroup;
 			children = (
+				30ABFB721FA5125F00E518EA /* Package.swift */,
 				8933C7811EB5B7E0000D00A4 /* Sources */,
 				8933C7831EB5B7EB000D00A4 /* Tests */,
 				52D6D99C1BEFF38C002C0205 /* Configs */,
@@ -472,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30ABFB751FA512FA00E518EA /* Orbit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30ABFB761FA512FB00E518EA /* Orbit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30ABFB741FA512F900E518EA /* Orbit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +844,7 @@
 		DD7502831C68FCFC006590AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Configs/OrbitTests.plist;
@@ -850,6 +859,7 @@
 		DD7502841C68FCFC006590AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Configs/OrbitTests.plist;
@@ -865,6 +875,7 @@
 		DD7502961C690C7A006590AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Configs/OrbitTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Orbit.Orbit-tvOS-Tests";
@@ -877,6 +888,7 @@
 		DD7502971C690C7A006590AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Configs/OrbitTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Orbit.Orbit-tvOS-Tests";
