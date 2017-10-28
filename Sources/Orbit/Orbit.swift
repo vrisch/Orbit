@@ -32,10 +32,10 @@ public final class Disposables {
         empty()
     }
 
-    private var block: (() -> Void)?
-    private var object: Any?
-    private var others: [Disposables]
-    private weak var parent: Disposables?
+    var block: (() -> Void)?
+    var object: Any?
+    var others: [Disposables]
+    weak var parent: Disposables?
 }
 
 public extension Disposables {
