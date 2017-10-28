@@ -8,29 +8,71 @@
 
 import Foundation
 
-public final class Disposable {
-    public static let none = Disposable.init()
-    public static let dispose = Disposable.init(dispose:)
+public final class Disposables {
 
-    
     public init() {
-        self.dispose = nil
+        self.block = nil
+        self.object = nil
+        self.others = []
     }
     
-    public init(dispose: @escaping () -> Void) {
-        self.dispose = dispose
+    public init(block: @escaping () -> Void) {
+        self.block = block
+        self.object = nil
+        self.others = []
+    }
+    
+    public init(object: Any) {
+        self.block = nil
+        self.object = object
+        self.others = []
     }
 
     deinit {
         empty()
     }
-    
-    private let dispose: (() -> Void)?
+
+    private var block: (() -> Void)?
+    private var object: Any?
+    private var others: [Disposables]
+    private weak var parent: Disposables?
 }
 
-public extension Disposable {
-    
+public extension Disposables {
+
+    public var isEmpty: Bool { return block == nil && others.count == 0 }
+
+    public var count: Int {
+        var result = 0
+        if block != nil { result += 1 }
+        if object != nil { result += 1 }
+        others.forEach { result += $0.count }
+        return result
+    }
+
     public func empty() {
-        dispose?()
+        block?()
+        block = nil
+        object = nil
+        others.forEach { $0.empty() }
+        others = []
+    }
+
+    public func add(disposable: Disposables) {
+        guard disposable.parent == nil else { abort() }
+        disposable.parent = self
+        others.append(disposable)
+    }
+
+    public func add(disposables: [Disposables]) {
+        disposables.forEach { add(disposable: $0) }
+    }
+    
+    static public func +=(lhs: inout Disposables, rhs: Disposables) {
+        lhs.add(disposable: rhs)
+    }
+    
+    static public func +=(lhs: inout Disposables, rhs: [Disposables]) {
+        lhs.add(disposables: rhs)
     }
 }
