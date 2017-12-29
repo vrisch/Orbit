@@ -67,12 +67,20 @@ public extension Disposables {
     public func add(disposables: [Disposables]) {
         disposables.forEach { add(disposable: $0) }
     }
-    
+
+    public func add(disposables: [Any]) {
+        disposables.forEach { add(disposable: Disposables(object: $0)) }
+    }
+
     static public func +=(lhs: inout Disposables, rhs: Disposables) {
         lhs.add(disposable: rhs)
     }
-    
+
     static public func +=(lhs: inout Disposables, rhs: [Disposables]) {
+        lhs.add(disposables: rhs)
+    }
+
+    static public func +=(lhs: inout Disposables, rhs: [Any]) {
         lhs.add(disposables: rhs)
     }
 }
