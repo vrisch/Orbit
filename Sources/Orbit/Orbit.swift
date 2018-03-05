@@ -84,3 +84,10 @@ public extension Disposables {
         lhs.add(disposables: rhs)
     }
 }
+
+extension Disposables: CustomStringConvertible {
+
+    public var description: String {
+        return "Disposables: count=\(count)"
+    }
+}
