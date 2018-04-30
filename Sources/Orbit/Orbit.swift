@@ -33,11 +33,25 @@ public extension Disposables {
         objects.append(disposable)
     }
 
+    public func add(disposable: Any?) {
+        guard let disposable = disposable else { return }
+        objects.append(disposable)
+    }
+
     public func add(disposables: [Any]) {
         objects += disposables
     }
 
+    public func add(disposables: [Any?]) {
+        disposables.forEach { add(disposable: $0) }
+    }
+
     public func add(disposables: [Any]?) {
+        guard let disposables = disposables else { return }
+        add(disposables: disposables)
+    }
+
+    public func add(disposables: [Any?]?) {
         guard let disposables = disposables else { return }
         add(disposables: disposables)
     }
@@ -46,11 +60,23 @@ public extension Disposables {
         lhs.add(disposable: rhs)
     }
 
+    static public func +=(lhs: inout Disposables, rhs: Any?) {
+        lhs.add(disposable: rhs)
+    }
+
     static public func +=(lhs: inout Disposables, rhs: [Any]) {
         lhs.add(disposables: rhs)
     }
 
+    static public func +=(lhs: inout Disposables, rhs: [Any?]) {
+        lhs.add(disposables: rhs)
+    }
+
     static public func +=(lhs: inout Disposables, rhs: [Any]?) {
+        lhs.add(disposables: rhs)
+    }
+
+    static public func +=(lhs: inout Disposables, rhs: [Any?]?) {
         lhs.add(disposables: rhs)
     }
 }
