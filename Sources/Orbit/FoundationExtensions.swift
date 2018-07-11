@@ -10,13 +10,13 @@
 import Foundation
 
 extension Tagged where RawValue == UUID {
-    init() {
+    public init() {
         self.init(rawValue: UUID())
     }
 }
 
 extension Tagged where RawValue == String {
-    init() {
+    public init() {
         self.init(rawValue: UUID().uuidString)
     }
 }
