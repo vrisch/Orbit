@@ -1,11 +1,3 @@
-//
-//  Tagged.swift
-//  Orbit
-//
-//  Created by Magnus on 2018-05-04.
-//  Copyright © 2018 Orbit. All rights reserved.
-//
-
 public struct Tagged<Tag, RawValue> {
     public var rawValue: RawValue
     
@@ -157,3 +149,20 @@ extension Tagged: Hashable where RawValue: Hashable {
 
 extension Tagged: SignedNumeric where RawValue: SignedNumeric {
 }
+
+#if canImport(Foundation)
+import Foundation
+
+extension Tagged where RawValue == UUID {
+    public init() {
+        self.init(rawValue: UUID())
+    }
+}
+
+extension Tagged where RawValue == String {
+    public init() {
+        self.init(rawValue: UUID().uuidString)
+    }
+}
+
+#endif

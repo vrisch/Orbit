@@ -17,10 +17,6 @@
 		8933C7901EB5B82D000D00A4 /* OrbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* OrbitTests.swift */; };
 		DD7502881C68FEDE006590AF /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* Orbit.framework */; };
 		DD7502921C690C7A006590AF /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* Orbit.framework */; };
-		F721CBF420F624E800FF9A69 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721CBF320F624E800FF9A69 /* FoundationExtensions.swift */; };
-		F721CBF520F624E800FF9A69 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721CBF320F624E800FF9A69 /* FoundationExtensions.swift */; };
-		F721CBF620F624E800FF9A69 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721CBF320F624E800FF9A69 /* FoundationExtensions.swift */; };
-		F721CBF720F624E800FF9A69 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F721CBF320F624E800FF9A69 /* FoundationExtensions.swift */; };
 		F7FFCABE209C946C00D177CC /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCABD209C946C00D177CC /* Disposables.swift */; };
 		F7FFCABF209C946C00D177CC /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCABD209C946C00D177CC /* Disposables.swift */; };
 		F7FFCAC0209C946C00D177CC /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCABD209C946C00D177CC /* Disposables.swift */; };
@@ -68,7 +64,6 @@
 		AD2FAA281CD0B6E100659CF4 /* OrbitTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OrbitTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* Orbit-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orbit-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD75028D1C690C7A006590AF /* Orbit-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orbit-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F721CBF320F624E800FF9A69 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FoundationExtensions.swift; path = Orbit/FoundationExtensions.swift; sourceTree = "<group>"; };
 		F7FFCABD209C946C00D177CC /* Disposables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Disposables.swift; path = Orbit/Disposables.swift; sourceTree = "<group>"; };
 		F7FFCAC2209C949800D177CC /* Tagged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tagged.swift; path = Orbit/Tagged.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				F7FFCABD209C946C00D177CC /* Disposables.swift */,
-				F721CBF320F624E800FF9A69 /* FoundationExtensions.swift */,
 				3086FDA31FA50A6F0017BA53 /* Orbit.swift */,
 				F7FFCAC2209C949800D177CC /* Tagged.swift */,
 			);
@@ -479,7 +473,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F721CBF420F624E800FF9A69 /* FoundationExtensions.swift in Sources */,
 				3086FDA41FA50A6F0017BA53 /* Orbit.swift in Sources */,
 				F7FFCABE209C946C00D177CC /* Disposables.swift in Sources */,
 				F7FFCAC3209C949800D177CC /* Tagged.swift in Sources */,
@@ -498,7 +491,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F721CBF620F624E800FF9A69 /* FoundationExtensions.swift in Sources */,
 				30ABFB751FA512FA00E518EA /* Orbit.swift in Sources */,
 				F7FFCAC0209C946C00D177CC /* Disposables.swift in Sources */,
 				F7FFCAC5209C949800D177CC /* Tagged.swift in Sources */,
@@ -509,7 +501,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F721CBF720F624E800FF9A69 /* FoundationExtensions.swift in Sources */,
 				30ABFB761FA512FB00E518EA /* Orbit.swift in Sources */,
 				F7FFCAC1209C946C00D177CC /* Disposables.swift in Sources */,
 				F7FFCAC6209C949800D177CC /* Tagged.swift in Sources */,
@@ -520,7 +511,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F721CBF520F624E800FF9A69 /* FoundationExtensions.swift in Sources */,
 				30ABFB741FA512F900E518EA /* Orbit.swift in Sources */,
 				F7FFCABF209C946C00D177CC /* Disposables.swift in Sources */,
 				F7FFCAC4209C949800D177CC /* Tagged.swift in Sources */,

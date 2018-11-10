@@ -1,89 +1,55 @@
-//
-//  Orbit.swift
-//  Orbit
-//
-//  Created by Vrisch on 2017-08-30.
-//  Copyright © 2017 Orbit. All rights reserved.
-//
-
 import Foundation
 
-public final class Disposables {
-
-    public init() {
+public struct Link: Codable, Hashable {
+    public typealias Relation = Tagged<Link, String>
+    
+    public enum Method: String, Codable {
+        case get = "GET"
+        case post = "POST"
+        case put = "PUT"
     }
-
-    deinit {
-        empty()
-    }
-
-    var objects: [Any] = []
-}
-
-public extension Disposables {
-
-    public var count: Int { return objects.count }
-    public var isEmpty: Bool { return objects.isEmpty }
-
-    public func empty() {
-        objects.removeAll()
-    }
-
-    public func add(disposable: Any) {
-        objects.append(disposable)
-    }
-
-    public func add(disposable: Any?) {
-        guard let disposable = disposable else { return }
-        objects.append(disposable)
-    }
-
-    public func add(disposables: [Any]) {
-        objects += disposables
-    }
-
-    public func add(disposables: [Any?]) {
-        disposables.forEach { add(disposable: $0) }
-    }
-
-    public func add(disposables: [Any]?) {
-        guard let disposables = disposables else { return }
-        add(disposables: disposables)
-    }
-
-    public func add(disposables: [Any?]?) {
-        guard let disposables = disposables else { return }
-        add(disposables: disposables)
-    }
-
-    static public func +=(lhs: inout Disposables, rhs: Any) {
-        lhs.add(disposable: rhs)
-    }
-
-    static public func +=(lhs: inout Disposables, rhs: Any?) {
-        lhs.add(disposable: rhs)
-    }
-
-    static public func +=(lhs: inout Disposables, rhs: [Any]) {
-        lhs.add(disposables: rhs)
-    }
-
-    static public func +=(lhs: inout Disposables, rhs: [Any?]) {
-        lhs.add(disposables: rhs)
-    }
-
-    static public func +=(lhs: inout Disposables, rhs: [Any]?) {
-        lhs.add(disposables: rhs)
-    }
-
-    static public func +=(lhs: inout Disposables, rhs: [Any?]?) {
-        lhs.add(disposables: rhs)
+    
+    public let rel: Relation
+    public let href: URL
+    public let method: Method
+    
+    public init(rel: Relation, href: URL, method: Method = .get) {
+        self.rel = rel
+        self.href = href
+        self.method = method
     }
 }
 
-extension Disposables: CustomStringConvertible {
+extension Tagged where Tag == Link, RawValue == String {
+    static var `self`: Link.Relation { return "self" }
+}
 
-    public var description: String {
-        return "Disposables: count \(count)"
+public struct Index<T>: Codable {
+    public typealias Identifier = Tagged<T, String>
+    
+    public let id: Identifier
+    public let links: [Link]
+    
+    public init(id: Identifier, links: [Link] = []) {
+        self.id = id
+        self.links = links
+    }
+}
+
+extension Index: Hashable {
+    public static func == (lhs: Index, rhs: Index) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+public struct Response<T: Codable>: Codable {
+    public let data: T
+    
+    public init(data: T) {
+        self.data = data
     }
 }
