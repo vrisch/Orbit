@@ -53,3 +53,7 @@ public struct Response<T: Codable>: Codable {
         self.data = data
     }
 }
+
+public struct Producing<Input, Output> {
+    public let produce: (Input) -> Output
+}
