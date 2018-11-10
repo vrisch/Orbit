@@ -21,7 +21,7 @@ public struct Link: Codable, Hashable {
 }
 
 extension Tagged where Tag == Link, RawValue == String {
-    static var `self`: Link.Relation { return "self" }
+    public static var `self`: Link.Relation { return "self" }
 }
 
 public struct Index<T>: Codable {
