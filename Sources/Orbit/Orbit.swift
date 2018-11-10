@@ -56,4 +56,8 @@ public struct Response<T: Codable>: Codable {
 
 public struct Producing<Input, Output> {
     public let produce: (Input) -> Output
+    
+    public init(produce: @escaping (Input) -> Output) {
+        self.produce = produce
+    }
 }
