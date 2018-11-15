@@ -20,6 +20,12 @@ public struct Link: Codable, Hashable {
     }
 }
 
+extension Link {
+    var data: Data? {
+        return try? Data(contentsOf: href)
+    }
+}
+
 extension Tagged where Tag == Link, RawValue == String {
     public static var `self`: Link.Relation { return "self" }
 }
@@ -59,5 +65,26 @@ public struct Producing<Input, Output> {
     
     public init(produce: @escaping (Input) -> Output) {
         self.produce = produce
+    }
+}
+
+public struct Promising<Input, Output> {
+    public let produce: (Input, @escaping (Output?, Error?) -> Void) -> Void
+    
+    public init(produce: @escaping (Input, @escaping (Output?, Error?) -> Void) -> Void) {
+        self.produce = produce
+    }
+}
+
+extension Promising {
+    public func append<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
+        return Promising<Input, Next> { (input, fulfill) in
+            self.produce(input) { output, error in
+                guard let output = output else { return fulfill(nil, error) }
+                next.produce(output) { next, error in
+                    fulfill(next, error)
+                }
+            }
+        }
     }
 }
