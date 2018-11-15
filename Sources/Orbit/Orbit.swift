@@ -21,7 +21,7 @@ public struct Link: Codable, Hashable {
 }
 
 extension Link {
-    var data: Data? {
+    public var data: Data? {
         return try? Data(contentsOf: href)
     }
 }
