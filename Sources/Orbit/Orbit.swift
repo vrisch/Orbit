@@ -3,20 +3,12 @@ import Foundation
 public struct Link: Codable, Hashable {
     public typealias Relation = Tagged<Link, String>
     
-    public enum Method: String, Codable {
-        case get = "GET"
-        case post = "POST"
-        case put = "PUT"
-    }
-    
     public let rel: Relation
     public let href: URL
-    public let method: Method
     
-    public init(rel: Relation, href: URL, method: Method = .get) {
+    public init(rel: Relation, href: URL) {
         self.rel = rel
         self.href = href
-        self.method = method
     }
 }
 
@@ -49,14 +41,6 @@ extension Index: Hashable {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
-    }
-}
-
-public struct Response<T: Codable>: Codable {
-    public let data: T
-    
-    public init(data: T) {
-        self.data = data
     }
 }
 
