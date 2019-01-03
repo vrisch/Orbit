@@ -69,7 +69,13 @@ public struct Producing<Input, Output> {
 }
 
 extension Producing {
+    @available(*, deprecated, renamed: "then")
     public func append<Next>(_ next: Producing<Output, Next>) -> Producing<Input, Next> {
+        return Producing<Input, Next> { input in
+            return next.produce(self.produce(input))
+        }
+    }
+    public func then<Next>(_ next: Producing<Output, Next>) -> Producing<Input, Next> {
         return Producing<Input, Next> { input in
             return next.produce(self.produce(input))
         }
@@ -85,7 +91,18 @@ public struct Promising<Input, Output> {
 }
 
 extension Promising {
+    @available(*, deprecated, renamed: "then")
     public func append<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
+        return Promising<Input, Next> { input, fulfill in
+            self.produce(input) { output, error in
+                guard let output = output else { return fulfill(nil, error) }
+                next.produce(output) { next, error in
+                    fulfill(next, error)
+                }
+            }
+        }
+    }
+    public func then<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
         return Promising<Input, Next> { input, fulfill in
             self.produce(input) { output, error in
                 guard let output = output else { return fulfill(nil, error) }
