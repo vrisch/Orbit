@@ -65,35 +65,3 @@ extension Producing {
         }
     }
 }
-
-public struct Promising<Input, Output> {
-    public let produce: (Input, @escaping (Output?, Error?) -> Void) -> Void
-    
-    public init(produce: @escaping (Input, @escaping (Output?, Error?) -> Void) -> Void) {
-        self.produce = produce
-    }
-}
-
-extension Promising {
-    @available(*, deprecated, renamed: "then")
-    public func append<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
-        return Promising<Input, Next> { input, fulfill in
-            self.produce(input) { output, error in
-                guard let output = output else { return fulfill(nil, error) }
-                next.produce(output) { next, error in
-                    fulfill(next, error)
-                }
-            }
-        }
-    }
-    public func then<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
-        return Promising<Input, Next> { input, fulfill in
-            self.produce(input) { output, error in
-                guard let output = output else { return fulfill(nil, error) }
-                next.produce(output) { next, error in
-                    fulfill(next, error)
-                }
-            }
-        }
-    }
-}
