@@ -209,9 +209,7 @@ class OrbitTests: XCTestCase {
         expectation.expectedFulfillmentCount = 2
         var result: [Int] = []
 
-        let step1 = Promising<Void, [Int]> { _, fulfill in
-            fulfill([42, 66], nil)
-        }
+        let step1: Promising<Void, [Int]> = Promising(output: [42, 66])
         let done = Promising<Int, Int> { value, fulfill in
             result.append(value)
             fulfill(value, nil)

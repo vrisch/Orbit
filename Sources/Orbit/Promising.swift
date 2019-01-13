@@ -1,5 +1,7 @@
 import Foundation
 
+private let promisingQueue = DispatchQueue(label: "Promising")
+
 public struct Promising<Input, Output> {
     public init(produce: @escaping (Input, @escaping (Output?, Error?) -> Void) -> Void) {
         self.work = { input, error, fulfill in
@@ -33,8 +35,6 @@ public struct Promising<Input, Output> {
     private let work: (Input?, Error?, @escaping (Output?, Error?) -> Void) -> Void
 }
 
-private let promisingQueue = DispatchQueue(label: "Promising")
-
 extension Promising where Input == Output {
     public init() {
         self.work = { input, error, fulfill in
@@ -44,12 +44,8 @@ extension Promising where Input == Output {
     }
 }
 
+// CONTROL FLOW
 extension Promising {
-    @available(*, deprecated, renamed: "then")
-    public func append<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
-        return then(next)
-    }
-
     public func then<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
         return Promising<Input, Next> { input, error, fulfill in
             self.work(input, error) { output, error in
@@ -84,6 +80,7 @@ extension Promising {
     }
 }
 
+// BASE TRANSFORMATIONS
 extension Promising {
     public func map<Next>(_ f: @escaping (Output) -> Next) -> Promising<Input, Next> {
         return Promising<Input, Next> { input, fulfill in
@@ -123,6 +120,10 @@ extension Promising {
         }
     }
 
+    public func zip<A, B, C>(with f: @escaping (A, B) -> C) -> (Promising<Input, A>, Promising<Input, B>) -> Promising<Input, C> {
+        return { $0.zip($1).map(f) }
+    }
+
     // By providing (Int) -> String, transform Promising<String, URL> to Promising<Int, URL>
     public func pullback<A>(_ f: @escaping (A) -> Input) -> Promising<A, Output> {
         return Promising<A, Output> { input, fulfill in
@@ -131,26 +132,8 @@ extension Promising {
     }
 }
 
+// ARRAY TRANSFORMATIONS
 extension Promising {
-    public func then<Element, Next>(_ next: Promising<Element, Next>) -> Promising<Input, [Next]> where Output == [Element] {
-        return Promising<Input, [Next]> { input, fulfill in
-            self.produce(input) { output, error in
-                guard let output = output else { return fulfill(nil, error) }
-                let count = output.count
-                var result: [Next?] = Array(repeating: nil, count: count)
-                Swift.zip(output.indices, output).forEach {
-                    let (index, element) = $0
-                    next.produce(element) { output, error in
-                        guard let output = output else { return fulfill(nil, error) }
-                        result[index] = output
-                        let ready = result.compactMap { $0 }
-                        if ready.count == count { fulfill(ready, nil) }
-                    }
-                }
-            }
-        }
-    }
-
     public func map<Element, Next>(_ f: @escaping (Element) -> Next) -> Promising<Input, [Next]> where Output == [Element] {
         return Promising<Input, [Next]> { input, fulfill in
             self.produce(input) { output, error in
@@ -184,6 +167,7 @@ extension Promising {
     }
 }
 
+// TUPLE TRANSFORMATIONS
 extension Promising {
     public func first<First, Second>() -> Promising<Input, First> where Output == (First, Second) {
         return Promising<Input, First> { input, fulfill in
@@ -199,18 +183,6 @@ extension Promising {
             self.produce(input) { output, error in
                 guard let output = output else { return fulfill(nil, error) }
                 fulfill(output.1, nil)
-            }
-        }
-    }
-
-    public func thenFirst<Element, Next, Second>(_ next: Promising<Element, Next>) -> Promising<Input, (Next, Second)> where Output == (Element, Second) {
-        return Promising<Input, (Next, Second)> { input, fulfill in
-            self.produce(input) { output1, error in
-                guard let output1 = output1 else { return fulfill(nil, error) }
-                next.produce(output1.0) { output2, error in
-                    guard let output2 = output2 else { return fulfill(nil, error) }
-                    fulfill((output2, output1.1), nil)
-                }
             }
         }
     }
@@ -231,18 +203,6 @@ extension Promising {
                 f(output1.0).produce(input) { output2, error in
                     guard let output2 = output2 else { return fulfill(nil, error) }
                     fulfill((output2, output1.1), nil)
-                }
-            }
-        }
-    }
-    
-    public func thenSecond<Element, Next, First>(_ next: Promising<Element, Next>) -> Promising<Input, (First, Next)> where Output == (First, Element) {
-        return Promising<Input, (First, Next)> { input, fulfill in
-            self.produce(input) { output1, error in
-                guard let output1 = output1 else { return fulfill(nil, error) }
-                next.produce(output1.1) { output2, error in
-                    guard let output2 = output2 else { return fulfill(nil, error) }
-                    fulfill((output1.0, output2), nil)
                 }
             }
         }
