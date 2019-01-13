@@ -14,6 +14,12 @@ public struct Promising<Input, Output> {
         }
     }
 
+    public init(error: Error) {
+        self.work = { _, _, fulfill in
+            fulfill(nil, error)
+        }
+    }
+
     public func produce(_ input: Input, fulfill: @escaping (Output?, Error?) -> Void) {
         promisingQueue.async {
             self.work(input, nil, fulfill)
