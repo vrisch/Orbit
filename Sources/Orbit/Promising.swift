@@ -134,6 +134,15 @@ extension Promising {
 
 // ARRAY TRANSFORMATIONS
 extension Promising {
+    public func first<Element>() -> Promising<Input, Element?> where Output == [Element] {
+        return Promising<Input, Element?> { input, fulfill in
+            self.produce(input) { output, error in
+                guard let output = output else { return fulfill(nil, error) }
+                fulfill(output.first, nil)
+            }
+        }
+    }
+
     public func map<Element, Next>(_ f: @escaping (Element) -> Next) -> Promising<Input, [Next]> where Output == [Element] {
         return Promising<Input, [Next]> { input, fulfill in
             self.produce(input) { output, error in
@@ -151,6 +160,7 @@ extension Promising {
         return Promising<Input, [Next]> { input, fulfill in
             self.produce(input) { output, error in
                 guard let output = output else { return fulfill(nil, error) }
+                guard !output.isEmpty else { return fulfill([], error) }
                 let count = output.count
                 var result: [Next?] = Array(repeating: nil, count: count)
                 Swift.zip(output.indices, output).forEach {
@@ -162,6 +172,18 @@ extension Promising {
                         if ready.count == count { fulfill(ready, nil) }
                     }
                 }
+            }
+        }
+    }
+}
+
+// OPTIONAL TRANSFORMATIONS
+extension Promising {
+    public func unwrap<Element>() -> Promising<Input, Element> where Output == Element? {
+        return Promising<Input, Element> { input, fulfill in
+            self.produce(input) { output, error in
+                guard let output = output else { return fulfill(nil, error) }
+                fulfill(output, nil)
             }
         }
     }
