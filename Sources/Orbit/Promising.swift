@@ -35,15 +35,6 @@ public struct Promising<Input, Output> {
     private let work: (Input?, Error?, @escaping (Output?, Error?) -> Void) -> Void
 }
 
-extension Promising where Input == Output {
-    public init() {
-        self.work = { input, error, fulfill in
-            guard let input = input else { return fulfill(nil, error) }
-            fulfill(input, nil)
-        }
-    }
-}
-
 // CONTROL FLOW
 extension Promising {
     public func then<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
@@ -250,6 +241,34 @@ extension Promising {
             }
         }
     }
+}
+
+// KEY PATH TRANSFORMATIONS
+extension Promising {
+    public func extract<Partial>(_ kp: KeyPath<Output, Partial>) -> Promising<Input, Partial> {
+        return Promising<Input, Partial> { input, fulfill in
+            self.produce(input) { output, error in
+                guard let output = output else { return fulfill(nil, error) }
+                fulfill(output[keyPath: kp], nil)
+            }
+        }
+    }
+    
+    public static func replace<Partial>(_ kp: WritableKeyPath<Output, Partial>) -> (Partial) -> Promising<Input, Output> where Input == Output {
+        return { partial in
+            return Promising<Input, Output> { input, fulfill in
+                var output = input
+                output[keyPath: kp] = partial
+                fulfill(output, nil)
+            }
+        }
+    }
+}
+
+// Extras
+
+public func start<Input, Output>(_ output: Output) -> Promising<Input, Output> {
+    return Promising(output: output)
 }
 
 extension Promising where Input == Void {
