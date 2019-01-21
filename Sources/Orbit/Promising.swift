@@ -35,6 +35,15 @@ public struct Promising<Input, Output> {
     private let work: (Input?, Error?, @escaping (Output?, Error?) -> Void) -> Void
 }
 
+extension Promising where Input == Output {
+    public init() {
+        self.work = { input, error, fulfill in
+            guard let input = input else { return fulfill(nil, error) }
+            fulfill(input, nil)
+        }
+    }
+}
+
 // CONTROL FLOW
 extension Promising {
     public func then<Next>(_ next: Promising<Output, Next>) -> Promising<Input, Next> {
