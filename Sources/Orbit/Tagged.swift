@@ -15,6 +15,12 @@ extension Tagged: CustomStringConvertible {
 extension Tagged: RawRepresentable {
 }
 
+extension Tagged where RawValue == String {
+    public static var uuid: Tagged<Tag, String> {
+        return Tagged<Tag, String>(rawValue: UUID().uuidString)
+    }
+}
+
 extension Tagged: Comparable where RawValue: Comparable {
     public static func < (lhs: Tagged, rhs: Tagged) -> Bool {
         return lhs.rawValue < rhs.rawValue
