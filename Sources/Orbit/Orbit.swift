@@ -23,7 +23,7 @@ extension Tagged where Tag == Link, RawValue == String {
 }
 
 public struct Index<T>: Codable {
-    public typealias Identifier = Tagged<T, String>
+    public typealias Identifier = Tagged<T, UUID>
     
     public let id: Identifier
     public let links: [Link]
@@ -41,27 +41,5 @@ extension Index: Hashable {
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
-    }
-}
-
-public struct Producing<Input, Output> {
-    public let produce: (Input) -> Output
-    
-    public init(produce: @escaping (Input) -> Output) {
-        self.produce = produce
-    }
-}
-
-extension Producing {
-    @available(*, deprecated, renamed: "then")
-    public func append<Next>(_ next: Producing<Output, Next>) -> Producing<Input, Next> {
-        return Producing<Input, Next> { input in
-            return next.produce(self.produce(input))
-        }
-    }
-    public func then<Next>(_ next: Producing<Output, Next>) -> Producing<Input, Next> {
-        return Producing<Input, Next> { input in
-            return next.produce(self.produce(input))
-        }
     }
 }
