@@ -24,13 +24,13 @@ extension Tagged where Tag == Link, RawValue == String {
 
 public struct Index<T>: Codable {
     public typealias Identifier = Tagged<T, UUID>
-    
+
     public let id: Identifier
-    public let links: [Link]
-    
-    public init(id: Identifier, links: [Link] = []) {
+    public let _link: Link?
+
+    public init(id: Identifier, _link: Link? = nil) {
         self.id = id
-        self.links = links
+        self._link = _link
     }
 }
 
