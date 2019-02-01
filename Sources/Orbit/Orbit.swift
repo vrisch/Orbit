@@ -1,5 +1,12 @@
 import Foundation
 
+public struct Warning {
+    public let message: String
+    public init(message: String) {
+        self.message = message
+    }
+}
+
 public struct Link: Codable, Hashable {
     public typealias Relation = Tagged<Link, String>
     
