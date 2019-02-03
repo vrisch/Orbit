@@ -80,6 +80,18 @@ extension Promising {
         }
     }
 
+    public func invalid(_ next: Promising<[Warning], [Warning]>) -> Promising<Input, Output> {
+        return Promising { input, fulfill in
+            self.work(input) { output in
+                // Only produce if invalid else fulfill
+                guard case let .invalid(warnings) = output else { return fulfill(output) }
+                next.work(.successful(warnings)) { _ in
+                    fulfill(.invalid(warnings))
+                }
+            }
+        }
+    }
+
     public func error(_ next: Promising<Error, Error>) -> Promising<Input, Output> {
         return Promising { input, fulfill in
             self.work(input) { output in
