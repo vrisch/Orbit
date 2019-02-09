@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Warning {
+public struct Warning: Codable, Hashable {
     public let message: String
     public init(message: String) {
         self.message = message
