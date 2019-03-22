@@ -1,23 +1,31 @@
-//
-//  OrbitTests.swift
-//  Orbit
-//
-//  Created by Vrisch on 2017-08-30.
-//  Copyright © 2017 Orbit. All rights reserved.
-//
-
 import Foundation
 import XCTest
-import Orbit
+
+@testable import Orbit
+
+enum TestError: Error {
+    case failure
+}
 
 class OrbitTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        //// XCTAssertEqual(Orbit().text, "Hello, World!")
+    func test1() {
+        var disposables = Disposables()
+        XCTAssert(disposables.count == 0)
+        XCTAssert(disposables.isEmpty)
+        
+        disposables += 1
+        XCTAssert(disposables.count == 1)
+        XCTAssert(!disposables.isEmpty)
+        
+        disposables += 2
+        XCTAssert(disposables.count == 2)
+        
+        disposables.empty()
+        XCTAssert(disposables.count == 0)
+        XCTAssert(disposables.isEmpty)
     }
-    
+
     static var allTests = [
-        ("testExample", testExample),
+        ("test1", test1),
     ]
 }

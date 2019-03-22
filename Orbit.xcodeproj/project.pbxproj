@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3086FDA41FA50A6F0017BA53 /* Orbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3086FDA31FA50A6F0017BA53 /* Orbit.swift */; };
 		52D6D9871BEFF229002C0205 /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Orbit.framework */; };
 		8933C78E1EB5B82C000D00A4 /* OrbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* OrbitTests.swift */; };
 		8933C78F1EB5B82C000D00A4 /* OrbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* OrbitTests.swift */; };
 		8933C7901EB5B82D000D00A4 /* OrbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8933C7891EB5B82A000D00A4 /* OrbitTests.swift */; };
 		DD7502881C68FEDE006590AF /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6DA0F1BF000BD002C0205 /* Orbit.framework */; };
 		DD7502921C690C7A006590AF /* Orbit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D9F01BEFFFBE002C0205 /* Orbit.framework */; };
+		F7FFCABE209C946C00D177CC /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCABD209C946C00D177CC /* Disposables.swift */; };
+		F7FFCABF209C946C00D177CC /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCABD209C946C00D177CC /* Disposables.swift */; };
+		F7FFCAC0209C946C00D177CC /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCABD209C946C00D177CC /* Disposables.swift */; };
+		F7FFCAC1209C946C00D177CC /* Disposables.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCABD209C946C00D177CC /* Disposables.swift */; };
+		F7FFCAC3209C949800D177CC /* Tagged.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCAC2209C949800D177CC /* Tagged.swift */; };
+		F7FFCAC4209C949800D177CC /* Tagged.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCAC2209C949800D177CC /* Tagged.swift */; };
+		F7FFCAC5209C949800D177CC /* Tagged.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCAC2209C949800D177CC /* Tagged.swift */; };
+		F7FFCAC6209C949800D177CC /* Tagged.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FFCAC2209C949800D177CC /* Tagged.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3086FDA31FA50A6F0017BA53 /* Orbit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Orbit.swift; path = Orbit/Orbit.swift; sourceTree = "<group>"; };
+		30ABFB721FA5125F00E518EA /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		52D6D97C1BEFF229002C0205 /* Orbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Orbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* Orbit-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orbit-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9E21BEFFF6E002C0205 /* Orbit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Orbit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +59,8 @@
 		AD2FAA281CD0B6E100659CF4 /* OrbitTests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OrbitTests.plist; sourceTree = "<group>"; };
 		DD75027A1C68FCFC006590AF /* Orbit-macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orbit-macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD75028D1C690C7A006590AF /* Orbit-tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orbit-tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7FFCABD209C946C00D177CC /* Disposables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Disposables.swift; path = Orbit/Disposables.swift; sourceTree = "<group>"; };
+		F7FFCAC2209C949800D177CC /* Tagged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tagged.swift; path = Orbit/Tagged.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +122,7 @@
 		52D6D9721BEFF229002C0205 = {
 			isa = PBXGroup;
 			children = (
+				30ABFB721FA5125F00E518EA /* Package.swift */,
 				8933C7811EB5B7E0000D00A4 /* Sources */,
 				8933C7831EB5B7EB000D00A4 /* Tests */,
 				52D6D99C1BEFF38C002C0205 /* Configs */,
@@ -146,7 +156,8 @@
 		8933C7811EB5B7E0000D00A4 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				3086FDA31FA50A6F0017BA53 /* Orbit.swift */,
+				F7FFCABD209C946C00D177CC /* Disposables.swift */,
+				F7FFCAC2209C949800D177CC /* Tagged.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -343,16 +354,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Orbit;
 				TargetAttributes = {
 					52D6D97B1BEFF229002C0205 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1020;
 					};
 					52D6D9851BEFF229002C0205 = {
 						CreatedOnToolsVersion = 7.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1020;
 					};
 					52D6D9E11BEFFF6E002C0205 = {
 						CreatedOnToolsVersion = 7.1;
@@ -381,6 +392,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 52D6D9721BEFF229002C0205;
@@ -456,7 +468,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3086FDA41FA50A6F0017BA53 /* Orbit.swift in Sources */,
+				F7FFCABE209C946C00D177CC /* Disposables.swift in Sources */,
+				F7FFCAC3209C949800D177CC /* Tagged.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +485,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7FFCAC0209C946C00D177CC /* Disposables.swift in Sources */,
+				F7FFCAC5209C949800D177CC /* Tagged.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +494,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7FFCAC1209C946C00D177CC /* Disposables.swift in Sources */,
+				F7FFCAC6209C949800D177CC /* Tagged.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +503,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7FFCABF209C946C00D177CC /* Disposables.swift in Sources */,
+				F7FFCAC4209C949800D177CC /* Tagged.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +549,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -538,12 +558,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -588,6 +610,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -596,12 +619,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -654,6 +679,7 @@
 				PRODUCT_NAME = Orbit;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -675,6 +701,7 @@
 				PRODUCT_NAME = Orbit;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -687,6 +714,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Orbit.Orbit-iOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -699,6 +727,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Orbit.Orbit-iOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -836,6 +865,7 @@
 		DD7502831C68FCFC006590AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Configs/OrbitTests.plist;
@@ -850,6 +880,7 @@
 		DD7502841C68FCFC006590AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Configs/OrbitTests.plist;
@@ -865,6 +896,7 @@
 		DD7502961C690C7A006590AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Configs/OrbitTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Orbit.Orbit-tvOS-Tests";
@@ -877,6 +909,7 @@
 		DD7502971C690C7A006590AF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Configs/OrbitTests.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Orbit.Orbit-tvOS-Tests";
