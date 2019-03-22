@@ -104,50 +104,10 @@ extension Tagged: LosslessStringConvertible where RawValue: LosslessStringConver
     }
 }
 
-extension Tagged: Numeric where RawValue: Numeric {
-    public typealias Magnitude = RawValue.Magnitude
-    
-    public init?<T>(exactly source: T) where T: BinaryInteger {
-        guard let rawValue = RawValue(exactly: source) else { return nil }
-        self.init(rawValue: rawValue)
-    }
-    
-    public var magnitude: RawValue.Magnitude {
-        return self.rawValue.magnitude
-    }
-    
-    public static func + (lhs: Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) -> Tagged<Tag, RawValue> {
-        return self.init(rawValue: lhs.rawValue + rhs.rawValue)
-    }
-    
-    public static func += (lhs: inout Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) {
-        lhs.rawValue += rhs.rawValue
-    }
-    
-    public static func * (lhs: Tagged, rhs: Tagged) -> Tagged {
-        return self.init(rawValue: lhs.rawValue * rhs.rawValue)
-    }
-    
-    public static func *= (lhs: inout Tagged, rhs: Tagged) {
-        lhs.rawValue *= rhs.rawValue
-    }
-    
-    public static func - (lhs: Tagged, rhs: Tagged) -> Tagged<Tag, RawValue> {
-        return self.init(rawValue: lhs.rawValue - rhs.rawValue)
-    }
-    
-    public static func -= (lhs: inout Tagged<Tag, RawValue>, rhs: Tagged<Tag, RawValue>) {
-        lhs.rawValue -= rhs.rawValue
-    }
-}
-
 extension Tagged: Hashable where RawValue: Hashable {
     public var hashValue: Int {
         return self.rawValue.hashValue
     }
-}
-
-extension Tagged: SignedNumeric where RawValue: SignedNumeric {
 }
 
 #if canImport(Foundation)
